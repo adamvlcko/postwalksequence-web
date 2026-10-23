@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nadpis stránky – PostWalkSequence</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="img/logo.svg" alt="" width="30" height="30">
+        PostWalkSequence
+      </a>
+      <div class="navbar-menu">
+        <nav class="nav" aria-label="Hlavná navigácia">
+          <ul>
+            <li><a class="nav-link" href="index.html" aria-current="page">Pochôdzky</a></li>
+            <li><a class="nav-link" href="#">Prenos</a></li>
+          </ul>
+        </nav>
+        <div class="navbar-user">
+          <span>novak</span>
+          <button class="btn btn-sm btn-outline-secondary" type="button">Odhlásiť</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav aria-label="Drobčeková navigácia">
+      <ol class="breadcrumb">
+        <li><a href="index.html">Pochôdzky</a></li>
+        <li><a href="#">Nadradená stránka</a></li>
+        <li aria-current="page">Aktuálna stránka</li>
+      </ol>
+    </nav>
+
+    <div class="page-head">
+      <h1>Nadpis stránky</h1>
+      <a class="btn btn-outline-secondary" href="#">Akcia stránky</a>
+    </div>
+
+    <div class="alert" role="status">
+      <span>Správa po vykonanej akcii</span>
+      <button class="btn-close" type="button" aria-label="Zavrieť">×</button>
+    </div>
+
+    <section class="placeholder" aria-label="Obsah stránky">
+      <span class="placeholder-label">Obsah stránky</span>
+    </section>
+  </main>
+</body>
+</html>
