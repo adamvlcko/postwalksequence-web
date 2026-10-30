@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rajón 2 – 013 24 Strečno – PostWalkSequence</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="img/logo.svg" alt="" width="30" height="30">
+        PostWalkSequence
+      </a>
+      <div class="navbar-menu">
+        <nav class="nav" aria-label="Hlavná navigácia">
+          <ul>
+            <li><a class="nav-link active" href="index.html">Pochôdzky</a></li>
+            <li><a class="nav-link" href="#">Prenos</a></li>
+          </ul>
+        </nav>
+        <div class="navbar-user">
+          <span>novak</span>
+          <button class="btn btn-sm btn-outline-secondary" type="button">Odhlásiť</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="container content">
+    <nav aria-label="Drobčeková navigácia">
+      <ol class="breadcrumb">
+        <li><a href="index.html">Pochôdzky</a></li>
+        <li>Rajón 2 – 013 24 Strečno</li>
+      </ol>
+    </nav>
+
+    <div class="page-head">
+      <h1>Rajón 2 – 013 24 Strečno</h1>
+    </div>
+
+    <div class="alert" role="status">
+      <span>Ulica Pod hradom bola pridaná.</span>
+      <button class="btn-close" type="button" aria-label="Zavrieť">×</button>
+    </div>
+
+    <form class="entry" method="post" action="ulice-pochodzky.html">
+      <label class="form-label" for="street-name">Nová ulica</label>
+      <div class="input-group">
+        <input class="form-control" id="street-name" name="name" type="text" maxlength="100" required>
+        <button class="btn btn-primary" type="submit">Pridať</button>
+      </div>
+    </form>
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Ulica</th>
+            <th class="text-end">Domy</th>
+            <th><span class="visually-hidden">Akcie</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="editor-ulice.html">Mládeže</a></td>
+            <td class="text-end num">24</td>
+            <td>
+              <form class="row-actions" method="post" action="ulice-pochodzky.html">
+                <a class="btn btn-sm btn-outline-secondary" href="editor-ulice.html">Upraviť</a>
+                <a class="btn btn-sm btn-outline-secondary" href="poradia-ulice.html">Poradia</a>
+                <button class="btn btn-sm btn-outline-secondary" type="button">Premenovať</button>
+                <button class="btn btn-sm btn-outline-danger" type="submit">Zmazať</button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td><a href="#">Sokolská</a></td>
+            <td class="text-end num">5</td>
+            <td>
+              <form class="row-actions" method="post" action="ulice-pochodzky.html">
+                <a class="btn btn-sm btn-outline-secondary" href="#">Upraviť</a>
+                <a class="btn btn-sm btn-outline-secondary" href="#">Poradia</a>
+                <button class="btn btn-sm btn-outline-secondary" type="button">Premenovať</button>
+                <button class="btn btn-sm btn-outline-danger" type="submit">Zmazať</button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td><a href="#">Pod hradom</a></td>
+            <td class="text-end num">6</td>
+            <td>
+              <form class="row-actions" method="post" action="ulice-pochodzky.html">
+                <a class="btn btn-sm btn-outline-secondary" href="#">Upraviť</a>
+                <a class="btn btn-sm btn-outline-secondary" href="#">Poradia</a>
+                <button class="btn btn-sm btn-outline-secondary" type="button">Premenovať</button>
+                <button class="btn btn-sm btn-outline-danger" type="submit">Zmazať</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="modal" role="dialog" aria-label="Premenovať ulicu">
+    <div class="modal-dialog">
+      <form class="modal-content" method="post" action="ulice-pochodzky.html">
+        <div class="modal-header">
+          <h2 class="modal-title">Premenovať ulicu</h2>
+          <button class="btn-close" type="button" aria-label="Zavrieť">×</button>
+        </div>
+        <div class="modal-body">
+          <label class="form-label" for="rename-name">Názov ulice</label>
+          <input class="form-control" id="rename-name" name="name" type="text" maxlength="100" required>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" type="button">Zrušiť</button>
+          <button class="btn btn-primary" type="submit">Uložiť</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

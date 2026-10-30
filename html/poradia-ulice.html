@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mládeže, poradia – PostWalkSequence</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="img/logo.svg" alt="" width="30" height="30">
+        PostWalkSequence
+      </a>
+      <div class="navbar-menu">
+        <nav class="nav" aria-label="Hlavná navigácia">
+          <ul>
+            <li><a class="nav-link active" href="index.html">Pochôdzky</a></li>
+            <li><a class="nav-link" href="#">Prenos</a></li>
+          </ul>
+        </nav>
+        <div class="navbar-user">
+          <span>novak</span>
+          <button class="btn btn-sm btn-outline-secondary" type="button">Odhlásiť</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="container content">
+    <nav aria-label="Drobčeková navigácia">
+      <ol class="breadcrumb">
+        <li><a href="index.html">Pochôdzky</a></li>
+        <li><a href="ulice-pochodzky.html">Rajón 2 – 013 24 Strečno</a></li>
+        <li><a href="editor-ulice.html">Mládeže</a></li>
+        <li>Poradia</li>
+      </ol>
+    </nav>
+
+    <div class="page-head">
+      <h1>Mládeže, poradia</h1>
+      <button class="btn btn-outline-secondary" type="button">Založiť poradie</button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Názov</th>
+            <th>Dátum</th>
+            <th>Verzia</th>
+            <th class="text-end">Adresné body</th>
+            <th class="text-end" colspan="3">Objem</th>
+            <th><span class="visually-hidden">Akcie</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#">R listy</a></td>
+            <td><time class="num" datetime="2026-10-30">30. 10. 2026</time></td>
+            <td>v1</td>
+            <td class="text-end num">16</td>
+            <td class="volume-icon"><img class="icon" src="img/envelope-light-yellow.svg" alt="" width="16" height="16"></td>
+            <td class="text-end num">155</td>
+            <td class="volume-unit">OB</td>
+            <td>
+              <form class="row-actions" method="post" action="poradia-ulice.html">
+                <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="sort">Zaraďovať</button>
+                <a class="btn btn-sm btn-outline-secondary" href="#">Zobraziť</a>
+                <button class="btn btn-sm btn-outline-secondary" type="button">Premenovať</button>
+                <button class="btn btn-sm btn-outline-danger" type="submit">Zmazať</button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td><a href="#">R listy</a></td>
+            <td><time class="num" datetime="2026-10-29">29. 10. 2026</time></td>
+            <td>v1</td>
+            <td class="text-end num">22</td>
+            <td class="volume-icon"><img class="icon" src="img/envelope-gray.svg" alt="" width="16" height="16"></td>
+            <td class="text-end num">22 <span class="visually-hidden">zásielky</span></td>
+            <td class="volume-unit"></td>
+            <td>
+              <form class="row-actions" method="post" action="poradia-ulice.html">
+                <a class="btn btn-sm btn-outline-secondary" href="#">Zobraziť</a>
+                <button class="btn btn-sm btn-outline-secondary" type="button">Premenovať</button>
+                <button class="btn btn-sm btn-outline-danger" type="submit">Zmazať</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="modal" role="dialog" aria-label="Založiť poradie">
+    <div class="modal-dialog">
+      <form class="modal-content" method="post" action="zaradovanie.html">
+        <div class="modal-header">
+          <h2 class="modal-title">Založiť poradie</h2>
+          <button class="btn-close" type="button" aria-label="Zavrieť">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label" for="seq-base">Základ názvu</label>
+            <input class="form-control" id="seq-base" name="base" type="text" maxlength="60" required>
+          </div>
+          <div class="form-check mb-3">
+            <input class="form-check-input" id="seq-valuation" name="valuation" type="checkbox" value="1">
+            <label class="form-check-label" for="seq-valuation">Valuácia objemových bodov</label>
+          </div>
+          <label class="form-label" for="seq-bulk">Predvolená trieda</label>
+          <select class="form-select" id="seq-bulk" name="bulk" required>
+            <option value="P">P (do 1 OB)</option>
+            <option value="L" selected>L (do 5 OB)</option>
+            <option value="10">≤10 (do 10 OB)</option>
+            <option value="20">≤20 (do 20 OB)</option>
+            <option value="30">≤30 (do 30 OB)</option>
+            <option value="50">≤50 (do 50 OB)</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" type="button">Zrušiť</button>
+          <button class="btn btn-primary" type="submit">Založiť</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
