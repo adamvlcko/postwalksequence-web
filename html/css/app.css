@@ -1,3 +1,8 @@
+/* Hodnoty farieb, veľkostí písma, odsadení a zaoblení sú prevzaté z Bootstrapu 5.3
+   (svetlý režim, predvolené premenné --bs-*); triedy nesú mená jeho komponentov
+   (navbar, btn, alert, form-control …), aby sa pohľady dali previesť na Bootstrap
+   bez zmeny HTML. Farby ikon v img/ sú z tej istej palety */
+
 *, *::before, *::after { box-sizing: border-box; }
 
 html { font-size: clamp(100%, .75rem + .3125vw, 150%); }
@@ -76,6 +81,23 @@ a { color: #212529; }
   background: none; border: 0; border-radius: .25rem; cursor: pointer;
 }
 .btn-close:hover { color: #212529; }
+.alert-danger { color: #58151c; background: #f8d7da; border-color: #f1aeb5; }
+
+.mb-3 { margin-bottom: 1rem; }
+.form-row { display: flex; flex-wrap: wrap; gap: 0 1.5rem; }
+.form-col { flex: 0 1 calc(50% - .75rem); min-width: 0; }
+.form-control {
+  display: block; width: 100%; padding: .375rem .75rem;
+  font: inherit; color: #212529; background: #fff;
+  border: 1px solid #ced4da; border-radius: .375rem;
+}
+.form-control.is-valid { border-color: #198754; }
+.form-control.is-invalid { border-color: #dc3545; }
+.form-text, .valid-feedback, .invalid-feedback { margin-top: .25rem; font-size: .875rem; }
+.form-text { color: #6c757d; }
+.valid-feedback { color: #198754; }
+.invalid-feedback { color: #dc3545; }
+.auth-switch { margin-top: 1.5rem; }
 
 .placeholder {
   position: relative; flex: 1; min-height: 16rem;
@@ -155,6 +177,11 @@ a { color: #212529; }
 .bulk-limit { font-size: .8125rem; color: #6c757d; }
 .bulk-option:has(input:checked) { background: #f8f9fa; border-color: #212529; outline: .1875rem solid #e9ecef; }
 .bulk-option:has(input:focus-visible) { outline: 2px solid #212529; outline-offset: 2px; }
+
+/* užšie, než potrebujú dve polia formulára vedľa seba s čitateľnou nápovedou */
+@media (max-width: 36rem) {
+  .form-col { flex-basis: 100%; }
+}
 
 /* užšie, než potrebuje riadok susedov vedľa seba (aj s päťmiestnymi číslami domov) */
 @media (max-width: 30rem) {
