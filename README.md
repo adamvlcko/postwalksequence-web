@@ -99,3 +99,46 @@ Pozícia adresného bodu v poradí sa neukladá — odvodzuje sa z pozície domu
 5. ďalšia rola - *vedúci pošty* - a prideľovanie rajónov doručovateľom,
 6. aliasy domov, flagy a popis obyvateľov,
 7. dopočet výdavkov pri prijímaní dobierok, colných poplatkov a inkasných platieb 
+
+## Spustenie
+
+Aplikácia je postavená na frameworku Vaííčko (PHP 8.3, MVC). Verejný koreň webu
+je priečinok `public/`. V tejto fáze stránky zobrazujú statický ukážkový obsah,
+bez databázy a prihlasovania.
+
+### Docker
+
+Potrebný je Docker Desktop. Z koreňa projektu:
+
+```bash
+cd docker
+docker compose up -d
+```
+
+Aplikácia beží na <http://localhost/>; úvodná adresa presmeruje na zoznam
+pochôdzok. Zastavenie: `docker compose down`.
+
+### Zabudovaný server PHP
+
+Potrebné je PHP 8.3. V koreni projektu:
+
+```bash
+php -S localhost:8000 -t public
+```
+
+a v prehliadači <http://localhost:8000/>.
+
+### Stránky
+
+| Stránka | Adresa |
+|---|---|
+| Registrácia | `/?c=auth&a=register` |
+| Prihlásenie | `/?c=auth&a=login` |
+| Pochôdzky | `/?c=walk` |
+| Ulice pochôdzky | `/?c=walk&a=show&id=1` |
+| Editor ulice | `/?c=street&a=edit&id=1` |
+| Poradia ulice | `/?c=sequence&streetId=1` |
+| Zaraďovanie | `/?c=sequence&a=sort&id=2` |
+| Poradie | `/?c=sequence&a=show&id=2` |
+| Prenos | `/?c=transfer` |
+| Náhľad importu | `/?c=transfer&a=preview` |
