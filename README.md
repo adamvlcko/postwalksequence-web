@@ -103,8 +103,12 @@ Pozícia adresného bodu v poradí sa neukladá — odvodzuje sa z pozície domu
 ## Spustenie
 
 Aplikácia je postavená na frameworku Vaííčko (PHP 8.3, MVC). Verejný koreň webu
-je priečinok `public/`. V tejto fáze stránky zobrazujú statický ukážkový obsah,
-bez databázy a prihlasovania.
+je priečinok `public/`, dáta sú v databáze MariaDB.
+
+V tejto fáze pracuje s databázou stránka *Pochôdzky*: zoznam pochôdzok, pridanie,
+premenovanie a zmazanie. Ostatné stránky zobrazujú statický ukážkový obsah
+(stránka *Ulice pochôdzky* už ukazuje názov pochôdzky z databázy). Prihlasovanie
+zatiaľ nie je; pochôdzky patria ukážkovému používateľovi `novak`.
 
 ### Docker
 
@@ -118,6 +122,19 @@ docker compose up -d
 Aplikácia beží na <http://localhost/>; úvodná adresa presmeruje na zoznam
 pochôdzok. Zastavenie: `docker compose down`.
 
+Pri prvom štarte vytvorí databáza tabuľky a ukážkové dáta zo skriptov
+v `docker/sql/` (`01-schema.sql`, `02-seed.sql`). Skripty sa spustia iba vtedy,
+keď je zväzok s dátami databázy prázdny. Na obnovenie ukážkových dát (a po
+zmene skriptov) treba zväzok zmazať a databázu spustiť znova:
+
+```bash
+docker compose down -v
+docker compose up -d
+```
+
+Databázu si možno prezrieť v Admineri na <http://127.0.0.1:8080/> (server `db`,
+používateľ, heslo a databáza podľa `docker/.env`).
+
 ### Zabudovaný server PHP
 
 Potrebné je PHP 8.3. V koreni projektu:
@@ -126,7 +143,9 @@ Potrebné je PHP 8.3. V koreni projektu:
 php -S localhost:8000 -t public
 ```
 
-a v prehliadači <http://localhost:8000/>.
+a v prehliadači <http://localhost:8000/>. Databáza beží iba v Dockeri pod menom
+servera `db`, preto stránky *Pochôdzky* a *Ulice pochôdzky* takto nefungujú;
+ostatné stránky áno.
 
 ### Stránky
 
@@ -135,6 +154,7 @@ a v prehliadači <http://localhost:8000/>.
 | Registrácia | `/?c=auth&a=register` |
 | Prihlásenie | `/?c=auth&a=login` |
 | Pochôdzky | `/?c=walk` |
+| Premenovanie pochôdzky (dočasné do integrácie JS) | `/?c=walk&a=edit&id=1` | 
 | Ulice pochôdzky | `/?c=walk&a=show&id=1` |
 | Editor ulice | `/?c=street&a=edit&id=1` |
 | Poradia ulice | `/?c=sequence&streetId=1` |
