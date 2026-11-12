@@ -3,27 +3,30 @@
 declare(strict_types=1);
 
 /**
- * Editor ulice: čísla domov v poradí obchôdzky, statický ukážkový obsah.
+ * Editor ulice: názov ulice a pochôdzky je z databázy, čísla domov v poradí obchôdzky sú zatiaľ statický
+ * ukážkový obsah.
  */
 
+/** @var \App\Models\Street $street */
+/** @var \App\Models\Walk $walk */
 /** @var \Framework\Support\LinkGenerator $link */
 ?>
 <nav aria-label="Drobčeková navigácia">
   <ol class="breadcrumb">
     <li><a href="<?= $link->url('walk.index') ?>">Pochôdzky</a></li>
-    <li><a href="<?= $link->url('walk.show', ['id' => 1]) ?>">Rajón 2 – 013 24 Strečno</a></li>
-    <li>Mládeže</li>
+    <li><a href="<?= $link->url('walk.show', ['id' => $walk->getId()]) ?>"><?= e($walk->getName()) ?></a></li>
+    <li><?= e($street->getName()) ?></li>
   </ol>
 </nav>
 
 <div class="page-head">
-  <h1>Mládeže</h1>
-  <form method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+  <h1><?= e($street->getName()) ?></h1>
+  <form method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
     <button class="btn btn-outline-secondary" type="submit">Obrátiť ulicu</button>
   </form>
 </div>
 
-<form class="entry" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+<form class="entry" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
   <label class="form-label" for="house-token">Pridať čísla domov</label>
   <div class="input-group">
     <input class="form-control num" id="house-token" name="token" type="text" maxlength="21" pattern="\s*[0-9]{1,10}(\s*/\s*[0-9]{0,10})?\s*" required autofocus>
@@ -48,7 +51,7 @@ declare(strict_types=1);
         <td class="text-end num">12</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie" disabled>▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -61,7 +64,7 @@ declare(strict_types=1);
         <td class="text-end num">4</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -74,7 +77,7 @@ declare(strict_types=1);
         <td class="text-end num">10060</td>
         <td class="text-end num">49</td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -87,7 +90,7 @@ declare(strict_types=1);
         <td class="text-end num">7</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -100,7 +103,7 @@ declare(strict_types=1);
         <td class="text-end num">15</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -113,7 +116,7 @@ declare(strict_types=1);
         <td class="text-end num">10061</td>
         <td class="text-end num">50</td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -126,7 +129,7 @@ declare(strict_types=1);
         <td class="text-end num">3</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -139,7 +142,7 @@ declare(strict_types=1);
         <td class="text-end num">21</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -152,7 +155,7 @@ declare(strict_types=1);
         <td class="text-end num">19</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -165,7 +168,7 @@ declare(strict_types=1);
         <td class="text-end num">10065</td>
         <td class="text-end num">52</td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -178,7 +181,7 @@ declare(strict_types=1);
         <td class="text-end num">8</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -191,7 +194,7 @@ declare(strict_types=1);
         <td class="text-end num">2</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -204,7 +207,7 @@ declare(strict_types=1);
         <td class="text-end num">6</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -217,7 +220,7 @@ declare(strict_types=1);
         <td class="text-end num">10</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -230,7 +233,7 @@ declare(strict_types=1);
         <td class="text-end num">1</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -243,7 +246,7 @@ declare(strict_types=1);
         <td class="text-end num">5</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -256,7 +259,7 @@ declare(strict_types=1);
         <td class="text-end num">9</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -269,7 +272,7 @@ declare(strict_types=1);
         <td class="text-end num">11</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -282,7 +285,7 @@ declare(strict_types=1);
         <td class="text-end num">13</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -295,7 +298,7 @@ declare(strict_types=1);
         <td class="text-end num">17</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -308,7 +311,7 @@ declare(strict_types=1);
         <td class="text-end num">23</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -321,7 +324,7 @@ declare(strict_types=1);
         <td class="text-end num">25</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -334,7 +337,7 @@ declare(strict_types=1);
         <td class="text-end num">10070</td>
         <td class="text-end num">61</td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie">▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -347,7 +350,7 @@ declare(strict_types=1);
         <td class="text-end num">27</td>
         <td class="text-end num"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="up" aria-label="Posunúť vyššie">▲</button>
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="down" aria-label="Posunúť nižšie" disabled>▼</button>
             <button class="btn btn-sm btn-outline-secondary" type="button">Upraviť</button>
@@ -361,7 +364,7 @@ declare(strict_types=1);
 
 <div class="modal" role="dialog" aria-label="Upraviť číslo domu">
   <div class="modal-dialog">
-    <form class="modal-content" method="post" action="<?= $link->url('street.edit', ['id' => 1]) ?>">
+    <form class="modal-content" method="post" action="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>">
       <div class="modal-header">
         <h2 class="modal-title">Upraviť číslo domu</h2>
         <button class="btn-close" type="button" aria-label="Zavrieť">×</button>

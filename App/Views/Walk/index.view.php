@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Pochôdzky: zoznam pochôdzok s formulárom na pridanie, akciami riadku a oknom na premenovanie.
+ * Pochôdzky: zoznam pochôdzok s počtom ulíc, formulárom na pridanie, akciami riadku a oknom na premenovanie.
  * Okno je otvorené, keď kontrolér pošle pochôdzku na premenovanie.
  */
 
@@ -40,6 +40,7 @@ declare(strict_types=1);
       <tr>
         <th>Pochôdzka</th>
         <th>Dátum</th>
+        <th class="text-end">Ulice</th>
         <th><span class="visually-hidden">Akcie</span></th>
       </tr>
     </thead>
@@ -49,6 +50,7 @@ declare(strict_types=1);
       <tr>
         <td><a href="<?= $link->url('walk.show', ['id' => $walk->getId()]) ?>"><?= e($walk->getName()) ?></a></td>
         <td><time class="num" datetime="<?= e(date('Y-m-d', $created)) ?>"><?= e(date('j. n. Y', $created)) ?></time></td>
+        <td class="text-end num"><?= count($walk->getStreets()) ?></td>
         <td>
           <form class="row-actions" method="post" action="<?= $link->url('walk.delete', ['id' => $walk->getId()]) ?>">
             <a class="btn btn-sm btn-outline-secondary" href="<?= $link->url('walk.edit', ['id' => $walk->getId()]) ?>">Premenovať</a>

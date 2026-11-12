@@ -3,22 +3,24 @@
 declare(strict_types=1);
 
 /**
- * Poradia ulice: zoznam denných poradí, statický ukážkový obsah.
+ * Poradia ulice: názov ulice a pochôdzky je z databázy, zoznam denných poradí je zatiaľ statický ukážkový obsah.
  */
 
+/** @var \App\Models\Street $street */
+/** @var \App\Models\Walk $walk */
 /** @var \Framework\Support\LinkGenerator $link */
 ?>
 <nav aria-label="Drobčeková navigácia">
   <ol class="breadcrumb">
     <li><a href="<?= $link->url('walk.index') ?>">Pochôdzky</a></li>
-    <li><a href="<?= $link->url('walk.show', ['id' => 1]) ?>">Rajón 2 – 013 24 Strečno</a></li>
-    <li><a href="<?= $link->url('street.edit', ['id' => 1]) ?>">Mládeže</a></li>
+    <li><a href="<?= $link->url('walk.show', ['id' => $walk->getId()]) ?>"><?= e($walk->getName()) ?></a></li>
+    <li><a href="<?= $link->url('street.edit', ['id' => $street->getId()]) ?>"><?= e($street->getName()) ?></a></li>
     <li>Poradia</li>
   </ol>
 </nav>
 
 <div class="page-head">
-  <h1>Mládeže, poradia</h1>
+  <h1><?= e($street->getName()) ?>, poradia</h1>
   <button class="btn btn-outline-secondary" type="button">Založiť poradie</button>
 </div>
 
@@ -44,7 +46,7 @@ declare(strict_types=1);
         <td class="text-end num">155</td>
         <td class="volume-unit">OB</td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('sequence.index', ['streetId' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('sequence.index', ['streetId' => $street->getId()]) ?>">
             <button class="btn btn-sm btn-outline-secondary" type="submit" name="op" value="sort" formaction="<?= $link->url('sequence.sort', ['id' => 2]) ?>">Zaraďovať</button>
             <a class="btn btn-sm btn-outline-secondary" href="<?= $link->url('sequence.show', ['id' => 2]) ?>">Zobraziť</a>
             <button class="btn btn-sm btn-outline-secondary" type="button">Premenovať</button>
@@ -61,7 +63,7 @@ declare(strict_types=1);
         <td class="text-end num">22 <span class="visually-hidden">zásielky</span></td>
         <td class="volume-unit"></td>
         <td>
-          <form class="row-actions" method="post" action="<?= $link->url('sequence.index', ['streetId' => 1]) ?>">
+          <form class="row-actions" method="post" action="<?= $link->url('sequence.index', ['streetId' => $street->getId()]) ?>">
             <a class="btn btn-sm btn-outline-secondary" href="#">Zobraziť</a>
             <button class="btn btn-sm btn-outline-secondary" type="button">Premenovať</button>
             <button class="btn btn-sm btn-outline-danger" type="submit">Zmazať</button>

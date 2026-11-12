@@ -7,7 +7,7 @@ namespace App\Models;
 use Framework\Core\Model;
 
 /**
- * Pochôdzka (rajón) doručovateľa — jeden riadok tabuľky walks.
+ * Pochôdzka (rajón) doručovateľa — jeden riadok tabuľky walks; ulice pochôdzky sú v tabuľke streets.
  * Tabuľku a stĺpce určuje konvencia frameworku: user_id ↔ userId, created_at ↔ createdAt.
  */
 class Walk extends Model
@@ -54,5 +54,16 @@ class Walk extends Model
     public function setCreatedAt(string $createdAt): void
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * Ulice pochôdzky (záznamy streets s walk_id tejto pochôdzky). Pri pochôdzkach z jedného zoznamu framework
+     * načíta ulice všetkých pochôdzok jedným dopytom.
+     *
+     * @return Street[]
+     */
+    public function getStreets(): array
+    {
+        return $this->getAllRelated(Street::class);
     }
 }

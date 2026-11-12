@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Services\WalkOwnership;
 use Framework\Core\BaseController;
 use Framework\Http\Request;
 use Framework\Http\Responses\Response;
 
 /**
  * Denné poradia ulice: zoznam poradí, zaraďovanie zásielok a poradie adresných bodov.
- * Stránky zatiaľ zobrazujú statický ukážkový obsah.
+ * Zoznam poradí berie názov ulice a pochôdzky z databázy; poradia a ostatné stránky zatiaľ zobrazujú statický
+ * ukážkový obsah.
  */
 class SequenceController extends BaseController
 {
@@ -30,7 +32,11 @@ class SequenceController extends BaseController
      */
     public function index(Request $request): Response
     {
-        return $this->html();
+        $street = WalkOwnership::street($request->get('streetId'), WalkOwnership::OWNER_ID);
+        return $this->html([
+            'street' => $street,
+            'walk' => $street->getWalk(),
+        ]);
     }
 
     /**

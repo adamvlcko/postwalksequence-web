@@ -27,7 +27,7 @@ Aplikácia je určená doručovateľom ako osobná pomôcka; každý používate
 
 **Doručovateľ — pochôdzky a ulice**
 - doručovateľ vytvorí, zobrazí, premenuje a zmaže pochôdzku,
-- doručovateľ vytvorí, zobrazí, premenuje a zmaže ulicu pochôdzky.
+- doručovateľ vytvorí, zobrazí, premenuje a zmaže ulicu pochôdzky a presunie ju do inej svojej pochôdzky.
 
 **Doručovateľ — čísla domov**
 - doručovateľ hromadne zapíše čísla domov ulice v poradí obchôdzky, aj v tvare `súpisné/popisné`,
@@ -105,10 +105,19 @@ Pozícia adresného bodu v poradí sa neukladá — odvodzuje sa z pozície domu
 Aplikácia je postavená na frameworku Vaííčko (PHP 8.3, MVC). Verejný koreň webu
 je priečinok `public/`, dáta sú v databáze MariaDB.
 
-V tejto fáze pracuje s databázou stránka *Pochôdzky*: zoznam pochôdzok, pridanie,
-premenovanie a zmazanie. Ostatné stránky zobrazujú statický ukážkový obsah
-(stránka *Ulice pochôdzky* už ukazuje názov pochôdzky z databázy). Prihlasovanie
-zatiaľ nie je; pochôdzky patria ukážkovému používateľovi `novak`.
+V tejto fáze pracujú s databázou dve entity prepojené vzťahom 1:N:
+
+- **pochôdzky** (stránka *Pochôdzky*): zoznam s počtom ulíc, pridanie,
+  premenovanie a zmazanie; zmazanie pochôdzky zmaže aj jej ulice,
+- **ulice** (stránka *Ulice pochôdzky*): zoznam ulíc pochôdzky, pridanie,
+  premenovanie, zmazanie a presun ulice do inej pochôdzky (akcia *Presunúť*
+  s výberom pochôdzky). Ulica patrí práve jednej pochôdzke cez cudzí kľúč
+  `streets.walk_id`.
+
+Stránky *Editor ulice* a *Poradia ulice* berú z databázy názov ulice
+a pochôdzky v navigácii; ich ostatný obsah, rovnako ako ostatné stránky, je
+statický ukážkový obsah. Prihlasovanie zatiaľ nie je; pochôdzky patria
+ukážkovému používateľovi `novak`, cudzia pochôdzka alebo ulica vráti chybu 404.
 
 ### Docker
 
@@ -146,8 +155,8 @@ php -S localhost:8000 -t public
 ```
 
 a v prehliadači <http://localhost:8000/>. Databáza beží iba v Dockeri pod menom
-servera `db`, preto stránky *Pochôdzky* a *Ulice pochôdzky* takto nefungujú;
-ostatné stránky áno.
+servera `db`, preto stránky *Pochôdzky*, *Ulice pochôdzky*, *Editor ulice*
+a *Poradia ulice* takto nefungujú; ostatné stránky áno.
 
 ### Stránky
 
@@ -158,6 +167,8 @@ ostatné stránky áno.
 | Pochôdzky | `/?c=walk` |
 | Premenovanie pochôdzky (dočasné do integrácie JS) | `/?c=walk&a=edit&id=1` | 
 | Ulice pochôdzky | `/?c=walk&a=show&id=1` |
+| Premenovanie ulice (dočasné do integrácie JS) | `/?c=walk&a=show&id=1&rename=1` |
+| Presun ulice do inej pochôdzky (dočasné do integrácie JS) | `/?c=walk&a=show&id=1&move=1` |
 | Editor ulice | `/?c=street&a=edit&id=1` |
 | Poradia ulice | `/?c=sequence&streetId=1` |
 | Zaraďovanie | `/?c=sequence&a=sort&id=2` |

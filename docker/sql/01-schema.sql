@@ -23,3 +23,13 @@ CREATE TABLE walks (
     CONSTRAINT fk_walks_user FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     CONSTRAINT ck_walks_name CHECK (CHAR_LENGTH(TRIM(name)) > 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_slovak_ci;
+
+CREATE TABLE streets (
+    id       INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    walk_id  INT UNSIGNED NOT NULL,
+    name     VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id),
+    KEY ix_streets_walk (walk_id),
+    CONSTRAINT fk_streets_walk FOREIGN KEY (walk_id) REFERENCES walks (id) ON DELETE CASCADE,
+    CONSTRAINT ck_streets_name CHECK (CHAR_LENGTH(TRIM(name)) > 0)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_slovak_ci;
