@@ -10,10 +10,18 @@ services:
     stdin_open: true
     tty: true
     depends_on:
-      - db
+      db:
+        # web štartuje až keď databáza prijíma spojenia (pri prvom štarte až po skriptoch z ./sql)
+        condition: service_healthy
   db:
     image: mariadb:11.4
     command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_slovak_ci"]
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 60s
+      interval: 5s
+      timeout: 5s
+      retries: 10
     volumes:
       # skripty z tohto priečinka sa spustia iba pri prvom štarte (kým je zväzok db-data prázdny)
       - ./sql:/docker-entrypoint-initdb.d:ro

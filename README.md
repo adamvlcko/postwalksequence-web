@@ -123,9 +123,11 @@ Aplikácia beží na <http://localhost/>; úvodná adresa presmeruje na zoznam
 pochôdzok. Zastavenie: `docker compose down`.
 
 Pri prvom štarte vytvorí databáza tabuľky a ukážkové dáta zo skriptov
-v `docker/sql/` (`01-schema.sql`, `02-seed.sql`). Skripty sa spustia iba vtedy,
-keď je zväzok s dátami databázy prázdny. Na obnovenie ukážkových dát (a po
-zmene skriptov) treba zväzok zmazať a databázu spustiť znova:
+v `docker/sql/` (`01-schema.sql`, `02-seed.sql`); `docker compose up -d` počká,
+kým je databáza pripravená, a až potom spustí web. Skripty sa spustia iba vtedy,
+keď je zväzok s dátami databázy prázdny. Na obnovenie ukážkových dát, po zmene
+skriptov alebo ak databáza vznikla bez nich (napr. zo staršej verzie
+repozitára), treba zväzok zmazať a databázu spustiť znova:
 
 ```bash
 docker compose down -v
